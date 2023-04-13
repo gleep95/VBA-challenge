@@ -5,6 +5,9 @@ Sub stock_data()
 Dim ws As Worksheet
         
 'For loop to run Macro on all worksheets
+'Work Cited: 
+'https://support.microsoft.com/en-us/topic/macro-to-loop-through-all-worksheets-in-a-workbook-feef14e3-97cf-00e2-538b-5da40186e2b0
+' https://www.mrexcel.com/board/threads/is-there-a-way-to-apply-a-macro-across-all-worksheets.997398/
 For Each ws In ThisWorkbook.Worksheets
     ws.Select
 
@@ -64,6 +67,9 @@ Dim Endrow As Long
 Endrow = Cells(Rows.Count, "J").End(xlUp).Row
 
 'For loop to iterate through Yearly Change column to set colors to red, green, or white
+'Work cited: 
+'https://stackoverflow.com/questions/14238061/beginner-to-vba-greater-than/
+'https://officetuts.net/excel/vba/change-cell-color-based-on-value-with-vba/
 For i = 2 To Endrow
     Set Yearly_Change = Range("J" & i)
     If Yearly_Change < 0 Then
@@ -77,12 +83,14 @@ Next i
 
 
 'Declare and assign Countrow & Countrow2 for last row count
+'Work Cited: https://www.wallstreetmojo.com/vba-last-row/
 Dim Countrow As Long
 Countrow = Cells(Rows.Count, "K").End(xlUp).Row
 Dim Countrow2 As Long
 Countrow2 = Cells(Rows.Count, "L").End(xlUp).Row
 
 'Get max & min percentages for percent change and max from total stock volume
+'Work Cited: https://www.wallstreetmojo.com/vba-max/
 Range("Q2").Value = WorksheetFunction.Max(Range("K2:K" & Countrow))
 Range("Q3").Value = WorksheetFunction.Min(Range("K2:K" & Countrow))
 Range("Q4").Value = WorksheetFunction.Max(Range("L2:L" & Countrow2))
@@ -115,6 +123,9 @@ Range("Q2").Value = FormatPercent(Range("Q2"))
 Range("Q3").Value = FormatPercent(Range("Q3"))
 
 'Format columns 10 & 11 to two decimals and percentage for 11
+'Work cited: 
+'https://wellsr.com/vba/2018/excel/format-numbers-with-vba-numberformat/
+'https://stackoverflow.com/questions/9730842/excel-vba-format-a-whole-column-excluding-the-heading-line
 Columns(10).NumberFormat = "0.00"
 Columns(11).NumberFormat = "0.00%"
 
